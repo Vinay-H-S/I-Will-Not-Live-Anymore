@@ -1,6 +1,6 @@
 package com.xworkz.task.impl;
 
-public class Military implements com.xworkz.task.app.Military {
+public class MilitaryRule implements Military {
 
 	@Override
 	public void ageLimit(int minAge) {

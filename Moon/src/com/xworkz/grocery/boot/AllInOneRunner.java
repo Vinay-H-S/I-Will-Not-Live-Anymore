@@ -11,6 +11,8 @@ import com.xworkz.historicalplaces.app.repository.HistoricalPlaces;
 import com.xworkz.historicalplaces.app.repository.HistoricalPlacesRepository;
 import com.xworkz.medicine.app.repository.MedicineRepository;
 import com.xworkz.medicine.app.repository.MedicineRepositoryimpl;
+import com.xworkz.moon.app.service.MedicineService;
+import com.xworkz.moon.app.service.MedicineServiceimpl;
 import com.xworkz.patient.repository.PatientRepository;
 import com.xworkz.patient.repository.PatientRepositoryimpl;
 import com.xworkz.pilot.app.repository.PilotRepository;
@@ -18,9 +20,7 @@ import com.xworkz.pilot.app.repository.PilotRepositoryimpl;
 
 public class AllInOneRunner {
 
-	/**
-	 * @param args
-	 */
+	
 	public static void main(String[] args) {
 
 		System.out.println("-------------------GROCERY-------------------");
@@ -148,7 +148,9 @@ public class AllInOneRunner {
 		System.out.println("-------------------MEDICINE-------------------");
 		System.out.println("\n");
 		
+		
 		MedicineRepository medicine=new MedicineRepositoryimpl();
+		
 		medicine.list("Naproxen");
 		medicine.list("Aspirin");
 		medicine.list("Diazepen");

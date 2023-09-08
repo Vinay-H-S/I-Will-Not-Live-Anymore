@@ -1,6 +1,5 @@
 package com.xworkz.crud.boot;
 
-import com.xworkz.artist.app.repository.TrainNoRepositoryimpl;
 import com.xworkz.crud.app.repository.*;
 import com.xworkz.crud.app.service.*;
 
@@ -15,12 +14,11 @@ public class AllRunner {
 		LocationRepository locationRepository=new LocationRepositoryimpl();
 		
 		LocationService locationService=new LocationServiceimpl(locationRepository);
-		locationService.validateAndSave("Shivamogga");
-		locationService.validateAndSave("Davanagere");
-		locationService.validateAndSave("Chikkamangaluru");
-		locationService.validateAndSave("Banglore");
-		locationService.validateAndSave("Bhadravathi");
-		locationService.validateAndSave("Bhadravathi");
+		String names[]= {"Anaveri","Shivamogga","Bhadravathi","N R Pura","Chikkamangluru",""};
+		for(String vini:names)
+		{
+			locationService.validateAndSave(vini);
+		}
 
 		
 		System.out.println("\n");
@@ -30,12 +28,11 @@ public class AllRunner {
 		CountryRepository countryRepository=new CountryRepositoryimpl();
 		
 		CountryService countryService=new CountryServiceimpl(countryRepository);
-		countryService.validateAndSave("India");
-		countryService.validateAndSave("United Kingdom");
-		countryService.validateAndSave("United states");
-		countryService.validateAndSave("UAE");
-		countryService.validateAndSave("France");
-		countryService.validateAndSave("France");
+		String name[]= {"India","America","Dubai","France","Srilanka"};
+		for(String o:name)
+		{
+			countryService.validateAndSave(o);
+		}
 		
 		System.out.println("\n");
 		System.out.println("--------------------PINCODE---------------");
@@ -44,28 +41,23 @@ public class AllRunner {
 		PincodeRepository pincodeRepository=new PincodeRepositoryimpl();
 		
 		PincodeService pincodeService=new PincodeServiceimpl(pincodeRepository);
-		pincodeService.validateAndSave(577243);
-		pincodeService.validateAndSave(577204);
-		pincodeService.validateAndSave(577132);
-		pincodeService.validateAndSave(577134);
-		pincodeService.validateAndSave(577123);
-		pincodeService.validateAndSave(577123);
-
+		int code[]= {577243,577132,577123,577134,577789};
+		for(int i:code)
+		{
+			pincodeRepository.list(i);
+		}
 
 		System.out.println("\n");
 		System.out.println("--------------------TRAIN-NUMBER---------------");
 		System.out.println("\n");
 		
-		TrainNoRepository tarinNoRepositoryimpl=new TrainNoRepositoryimpl();
+		TrainNoRepository tarinNoRepositoryimpl=new TrainNoRepositoryimpll();
 		
 		TrainNoService trainNoService=new TrainNoServiceimpl(tarinNoRepositoryimpl);
-		trainNoService.validateAndSave(11013);
-		trainNoService.validateAndSave(12785);
-		trainNoService.validateAndSave(16525);
-		trainNoService.validateAndSave(12654);
-		trainNoService.validateAndSave(16323);
-		trainNoService.validateAndSave(11013);
-
+		int train[]= {15485,64555,15463,78545,54656,56265};
+		for(int run:train) {
+			trainNoService.validateAndSave(run);
+		}
 
 		System.out.println("\n");
 		System.out.println("--------------------MOBILE-NUMBER---------------");
@@ -74,13 +66,11 @@ public class AllRunner {
 		MobileNoRepository mobileNoRepository=new MobileNoRepositoryimpl();
 		
 		MobileNoService mobileNoService=new MobileNoServiceimpl(mobileNoRepository);
-		mobileNoService.validateAndSave(9481904948L);
-		mobileNoService.validateAndSave(8310308343L);
-		mobileNoService.validateAndSave(9483115082L);
-		mobileNoService.validateAndSave(7026220424L);
-		mobileNoService.validateAndSave(7259758398L);
-		mobileNoService.validateAndSave(7259758398L);
-		
+		long cell[]= {9448316458L,7026220424L,9481362154L,7259456321L,9483110256L,9451255545L};
+		for(long phone : cell)
+		{
+			mobileNoService.validateAndSave(phone);
+		}
 		
 		
 	}

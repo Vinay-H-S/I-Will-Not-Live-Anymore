@@ -46,7 +46,7 @@ public class ApplicationServiceimpl implements ApplicationService{
 					System.err.println("Name, DevelopedBy, DevelopedAt, and Version is invalid, cannot save");
 					return false;
 				}
-					if(this.applicationRepository.isExist(dto))
+					if(!this.applicationRepository.isExist(dto))
 					{
 						this.applicationRepository.save(dto);
 						return true;

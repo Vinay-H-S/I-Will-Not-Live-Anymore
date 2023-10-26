@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>Reverse the every word in sentence</h1>
+	<p id="reverse"></p>
+	<p id="word"></p>
+	<script>
+		let reverseWord = 'Associate Software Engineer';
+		document.getElementById('reverse').innerHTML = reverseWord;
+		let splitWord = reverseWord.split('');
+		let reversed = splitWord.reverse();
+		let reversedWord = reversed.join('');
+		document.getElementById('word').innerHTML = reversedWord;
+	</script>
+</body>
+</html>

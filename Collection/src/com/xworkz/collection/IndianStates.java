@@ -27,6 +27,8 @@ public class IndianStates {
 		states.add("West Bengal");
 		states.add("Nagaland");
 		states.add("Goa");
+		states.add("Nagaland");
+		states.add("Goa");
 		states.add("Arunachala Pradesh");
 		states.add("Sikkim");
 		states.add("Jharkhand");

@@ -3,7 +3,7 @@ package com.xworkz.app.dto;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public class ApplicationDTORunner{
+public class ApplicationDTO{
 
 	private String name;
 	private String version;
@@ -11,11 +11,11 @@ public class ApplicationDTORunner{
 	private LocalDate createDate;
 	private double rating;
 	
-	public ApplicationDTORunner() {
+	public ApplicationDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ApplicationDTORunner(String name, String version, String companyName, LocalDate createDate, double rating) {
+	public ApplicationDTO(String name, String version, String companyName, LocalDate createDate, double rating) {
 		super();
 		this.name = name;
 		this.version = version;

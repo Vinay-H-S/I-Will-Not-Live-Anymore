@@ -14,4 +14,5 @@ public class Multiple {
 			System.out.println(number+"*"+i+"="+number1);
 		}
 	}
+
 }

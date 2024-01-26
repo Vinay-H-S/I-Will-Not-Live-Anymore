@@ -169,6 +169,7 @@ public class TempleRepositoryImpl implements TempleRepository {
             List<TempleEntity> list = query.getResultList();
             et.commit();
             System.out.println("list saved successfully");
+            return list;
         } catch (PendingException pe) {
             System.err.println("PersistenceEXception :" + pe.getMessage());
             et.rollback();
@@ -191,9 +192,10 @@ public class TempleRepositoryImpl implements TempleRepository {
             Query query = em.createNamedQuery("findById");
             query.setParameter("tid", id);
             Object obj = query.getSingleResult();
-            Object list = obj;
+            TempleEntity ent = (TempleEntity) obj;
             et.commit();
             System.out.println("list saved successfully");
+            return ent;
         } catch (PendingException pe) {
             System.err.println("PersistenceEXception :" + pe.getMessage());
             et.rollback();
@@ -202,5 +204,227 @@ public class TempleRepositoryImpl implements TempleRepository {
             System.out.println("closing the resources");
         }
         return TempleRepository.super.findById(id);
+    }
+
+    @Override
+    public List<TempleEntity> findByIdAndMainGOd(int id, String mainGod) {
+        System.out.println("invoking the findByIdAndMainGOd method");
+        EntityManager em = this.emf.createEntityManager();
+        EntityTransaction et = em.getTransaction();
+        try {
+            et.begin();
+            System.out.println("begin ET");
+            Query query = em.createNamedQuery("findByIdAndMainGod");
+            query.setParameter("ti", id);
+            query.setParameter("tm", mainGod);
+            List<TempleEntity> obj = query.getResultList();
+            et.commit();
+            System.out.println("list saved successfully");
+            return obj;
+        } catch (PendingException pe) {
+            System.err.println("PersistenceEXception :" + pe.getMessage());
+            et.rollback();
+        } finally {
+            em.close();
+            System.out.println("closing the resources");
+        }
+
+        return TempleRepository.super.findByIdAndMainGOd(id, mainGod);
+    }
+
+    @Override
+    public long findTotal() {
+        System.out.println("invoking the findTotal method");
+        EntityManager em = this.emf.createEntityManager();
+        EntityTransaction et = em.getTransaction();
+        try {
+            et.begin();
+            System.out.println("begin ET");
+            Query query = em.createNamedQuery("findTotal");
+            Object obj = query.getSingleResult();
+            long total = (long) obj;
+            et.commit();
+            System.out.println("list saved successfully");
+            return total;
+        } catch (PendingException pe) {
+            System.err.println("PersistenceEXception :" + pe.getMessage());
+            et.rollback();
+        } finally {
+            em.close();
+            System.out.println("closing the resources");
+        }
+        return 0;
+    }
+
+    @Override
+    public TempleEntity findTempleByMaxEntryFee() {
+        System.out.println("invoking the findTempleByMaxEntryFee method");
+        EntityManager em = this.emf.createEntityManager();
+        EntityTransaction et = em.getTransaction();
+        try {
+            et.begin();
+            System.out.println("begin ET");
+            Query query = em.createNamedQuery("findTempleByMaxEntryFee");
+            Object obj = query.getSingleResult();
+            TempleEntity tem = (TempleEntity) obj;
+            et.commit();
+            System.out.println("list saved successfully");
+            return tem;
+        } catch (PendingException pe) {
+            System.err.println("PersistenceEXception :" + pe.getMessage());
+            et.rollback();
+        } finally {
+            em.close();
+            System.out.println("closing the resources");
+        }
+        return null;
+    }
+
+    @Override
+    public void updateLocationByName(String location, String name) {
+        EntityManager em = this.emf.createEntityManager();
+        EntityTransaction et = em.getTransaction();
+        try {
+            et.begin();
+            System.out.println("begin ET");
+            Query query1 = em.createNamedQuery("findAll");
+            query1.setParameter("templeName", name);
+            Object obj = query1.getSingleResult();
+            TempleEntity list = (TempleEntity) obj;
+            if (list != null) {
+                list.setLocation(location);
+                list.setName(name);
+                em.merge(list);
+                et.commit();
+                System.out.println("Data is updated");
+            }
+        } catch (PersistenceException pe) {
+            et.rollback();
+            System.out.println("PersistenceException in updateLocationByName method");
+        } finally {
+            em.close();
+            System.out.println("Closing the open resources");
+        }
+
+        TempleRepository.super.updateLocationByName(location, name);
+    }
+
+    @Override
+    public void upadteEntryFeeByName(double fee, String name) {
+        System.out.println("invoking the updateEntryFeeName method");
+        EntityManager em = this.emf.createEntityManager();
+        EntityTransaction et = em.getTransaction();
+        try {
+            et.begin();
+            System.out.println("begin ET");
+            Query query = em.createNamedQuery("findAll");
+            query.setParameter("templeName", name);
+            Object obj = query.getSingleResult();
+            TempleEntity list = (TempleEntity) obj;
+            if (list != null) {
+                list.setEntryFee(fee);
+                list.setName(name);
+                em.merge(list);
+                et.commit();
+                System.out.println("Data is Upadted");
+            }
+
+        } catch (PersistenceException pe) {
+            System.out.println("PersistenceException in updateLocationByName method");
+            et.rollback();
+        } finally {
+            em.close();
+            System.out.println("Closing the Resources");
+        }
+        TempleRepository.super.upadteEntryFeeByName(fee, name);
+    }
+
+    @Override
+    public void updateLocationAndDimensionById(String location, String dimension, int id) {
+        System.out.println("invoking the updateLocationAndDimensionById method");
+        EntityManager em = this.emf.createEntityManager();
+        EntityTransaction et = em.getTransaction();
+        try {
+            et.begin();
+            System.out.println("begin ET");
+            Query query = em.createNamedQuery("updateLocationAndDimensionById");
+            query.setParameter("templeId", id);
+            Object obj = query.getSingleResult();
+            TempleEntity list = (TempleEntity) obj;
+            if (list != null) {
+                list.setLocation(location);
+                list.setDimension(dimension);
+                em.merge(list);
+                et.commit();
+                System.out.println("Data is Upadted");
+            }
+
+        } catch (PersistenceException pe) {
+            System.out.println("PersistenceException in updateLocationByName method");
+            et.rollback();
+        } finally {
+            em.close();
+            System.out.println("Closing the Resources");
+        }
+        TempleRepository.super.updateLocationAndDimensionById(location, dimension, id);
+    }
+
+    @Override
+    public void updateAllVipEntry(boolean vipEntry, List<Integer> ids) {
+        System.out.println("invoking the updateAllVipEntry method");
+        EntityManager em = this.emf.createEntityManager();
+        EntityTransaction et = em.getTransaction();
+        try {
+            System.out.println("begin ET");
+            Query query = em.createNamedQuery("updateAllVipEntry");
+            ids.forEach(id -> {
+                et.begin();
+                query.setParameter("templeId", id);
+                Object obj = query.getSingleResult();
+                TempleEntity list = (TempleEntity) obj;
+                if (list != null) {
+                    list.setVipEntry(vipEntry);
+                    list.setId(id);
+                    em.merge(list);
+                    et.commit();
+                    System.out.println("Data is updated");
+                }
+            });
+        } catch (PersistenceException pe) {
+            System.err.println("PersistenceException in updateLocationByName method");
+            et.rollback();
+        } finally {
+            em.close();
+            System.out.println("Closing the Resources");
+        }
+        TempleRepository.super.updateAllVipEntry(vipEntry, ids);
+    }
+
+    @Override
+    public void deleteByName(String name) {
+        EntityManager em = this.emf.createEntityManager();
+        EntityTransaction et = em.getTransaction();
+        try {
+            et.begin();
+            System.out.println("begin ET");
+            Query query = em.createNamedQuery("findAll");
+            query.setParameter("templeName", name);
+            Object obj = query.getSingleResult();
+            TempleEntity list = (TempleEntity) obj;
+            System.out.println(list);
+            if (list != null) {
+                list.setName(name);
+                em.remove(list);
+                et.commit();
+                System.out.println("Data is deleted successfully");
+            }
+        } catch (PersistenceException pe) {
+            System.out.println("PersistenceException in deleteByName");
+        } finally {
+            em.close();
+            System.out.println("Closing the open resources");
+        }
+
+        TempleRepository.super.deleteByName(name);
     }
 }

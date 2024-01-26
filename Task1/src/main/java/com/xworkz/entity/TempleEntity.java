@@ -18,7 +18,13 @@ import java.time.LocalDate;
 @NamedQuery(name="findAllByInaguratedDateGreaterThan",query="select temple from TempleEntity temple where temple.inaguratedDate >:td")
 @NamedQuery(name="findById",query="select temple from TempleEntity temple where temple.id=:tid")
 @NamedQuery(name="findAllByEntryFeeBetween",query="select temple from TempleEntity temple where temple.entryFee between :sf and :ef")
-@NamedQuery(name="findAllByMainGodAndLocation",query="select temple from TempleEntity order by temple.t_maingod:tm,temple.t_location:tl;")
+@NamedQuery(name="findAllByMainGodAndLocation",query="select temple from TempleEntity temple where temple.mainGod =:tm and temple.location=:tl")
+@NamedQuery(name="findByIdAndMainGod",query="select temple from TempleEntity temple where temple.id =:ti and temple.mainGod=:tm")
+@NamedQuery(name="findTotal",query="select count(t) from TempleEntity t")
+//@NamedQuery(name="findTempleByMaxEntryFee",query="select temple from TempleEntity temple where temple.entryFee=(select max(entryFee) from TempleEntity")
+@NamedQuery(name="findAll",query="select temple from TempleEntity temple where name=:templeName")
+@NamedQuery(name="updateLocationAndDimensionById",query="select temple from TempleEntity temple where temple.id=:templeId")
+@NamedQuery(name="updateAllVipEntry",query="select temple from TempleEntity temple where temple.id=:templeId")
 public class TempleEntity {
 
     @Id

@@ -5,6 +5,7 @@ import com.xworkz.repo.TempleRepository;
 import com.xworkz.repo.TempleRepositoryImpl;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -40,7 +41,32 @@ public class TempleRunner {
         List<TempleEntity> fee = templeRepository.findAllByEntryFeeBetween(100, 300);
         fee.forEach(z -> System.out.println(z));
 
+        List<TempleEntity> temple = templeRepository.findAllByMainGodAndLocation("Sharadamba", "Srigeri");
+        temple.forEach(t -> System.out.println(t));
 
+        List<TempleEntity> tem = templeRepository.findByIdAndMainGOd(1, "Sharadamba");
+        tem.forEach(t -> System.out.println(t));
+
+        long total = templeRepository.findTotal();
+        System.out.println("Total :" + total);
+
+        TempleEntity maxFee = templeRepository.findTempleByMaxEntryFee();
+        System.out.println(maxFee);
+
+        templeRepository.updateLocationByName("Shrigiri", "Sharadamba Temple");
+
+        templeRepository.upadteEntryFeeByName(500, "Ganapathi Temple");
+
+        templeRepository.updateLocationAndDimensionById("Edagungi", "150*180", 5);
+
+        List<Integer> integers = new ArrayList<>();
+        integers.add(1);
+        integers.add(2);
+        integers.add(3);
+        integers.add(4);
+        templeRepository.updateAllVipEntry(true, integers);
+
+        templeRepository.deleteByName("Moorudeshwara Temple");
 
     }
 }

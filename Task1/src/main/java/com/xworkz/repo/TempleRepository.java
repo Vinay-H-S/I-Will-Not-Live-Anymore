@@ -61,7 +61,7 @@ public interface TempleRepository {
 
     }
 
-    default void deleteByName(String name){
+        default void deleteByName(String name){
 
     }
 }

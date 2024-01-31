@@ -1,15 +1,17 @@
 package com.xworkz.repo;
 
 import com.xworkz.entity.TempleEntity;
+import com.xworkz.util.EMFUtil;
+import lombok.extern.slf4j.Slf4j;
 import sun.security.util.PendingException;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
-
+@Slf4j
 public class TempleRepositoryImpl implements TempleRepository {
 
-    private final EntityManagerFactory emf = Persistence.createEntityManagerFactory("x-workz");
+    private  EntityManagerFactory emf = EMFUtil.getManagerFactory();
 
     @Override
     public Integer save(TempleEntity templeEntity) {

@@ -3,11 +3,13 @@ package com.xworkz.boot;
 import com.xworkz.entity.EmailEntity;
 import com.xworkz.repo.EmailRepository;
 import com.xworkz.repo.EmailRepositoryImpl;
+import lombok.extern.slf4j.Slf4j;
+import lombok.extern.slf4j.XSlf4j;
 
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
-
+@Slf4j
 public class AllEntityRunner {
 
     public static void main(String[] args) {
@@ -31,7 +33,6 @@ public class AllEntityRunner {
 //        TravelRepository travelRepository=new TravelRepositoryImpl();
 //        travelRepository.save(travelEntity);
 //        travelRepository.save(travelEntity1);
-
         EmailEntity emailEntity1 = new EmailEntity("Udupi", "vinayshudedar@gmail.com", "darshanr@gmail.com", "venu@gmail.com", "chandanv@gmail.com", LocalDate.of(2024, 01, 10));
         EmailEntity emailEntity2 = new EmailEntity("Manipal", "gopal@gmail.com", "virat@gmail.com", "harshith@gmail.com", "hareesha@gmail.com", LocalDate.of(2024, 01, 21));
         EmailEntity emailEntity3 = new EmailEntity("Goa", "yalla@gmail.com", "dhoni@gmail.com", "harshith@gmail.com", "hareesha@gmail.com", LocalDate.of(2024, 01, 21));
